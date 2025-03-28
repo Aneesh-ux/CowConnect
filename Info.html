@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Cow Revival</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .header {
+            width: 100%;
+            padding: 20px;
+            background: #8B4513;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .emoji {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .breed-info {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .close-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        CowConnect 🐄
+    </div>
+
+    <div class="container">
+        <div class="title">Different Cows</div>
+        <div class="grid">
+            <div class="card">
+                <div class="emoji">🐂</div>
+                <h3>Sustainable Indian Breeds</h3>
+                <button class="btn" onclick="showInfo('breed1')">Learn More</button>
+            </div>
+            <div class="card">
+                <div class="emoji">🐃</div>
+                <h3>Danto Jade</h3>
+                <button class="btn" onclick="showInfo('breed2')">Learn More</button>
+            </div>
+            <div class="card">
+                <div class="emoji">🐄</div>
+                <h3>Dortor Dogo</h3>
+                <button class="btn" onclick="showInfo('breed3')">Learn More</button>
+            </div>
+        </div>
+
+        <!-- Breed Info Section -->
+        <div id="breed1" class="breed-info">
+            <button class="close-btn" onclick="hideInfo('breed1')">X</button>
+            <h2>Sustainable Indian Breeds 🐂</h2>
+            <p>These breeds are well-adapted to the Indian climate and are known for their resistance to diseases, high milk yield, and strong physique.</p>
+        </div>
+
+        <div id="breed2" class="breed-info">
+            <button class="close-btn" onclick="hideInfo('breed2')">X</button>
+            <h2>Danto Jade 🐃</h2>
+            <p>A robust breed known for its muscular build and high endurance, Danto Jade is often used for agricultural activities and dairy production.</p>
+        </div>
+
+        <div id="breed3" class="breed-info">
+            <button class="close-btn" onclick="hideInfo('breed3')">X</button>
+            <h2>Dortor Dogo 🐄</h2>
+            <p>Dortor Dogo is a rare breed with a distinctive appearance, known for its quality milk production and adaptability to diverse environments.</p>
+        </div>
+
+    </div>
+
+    <script>
+        function showInfo(breedId) {
+            document.getElementById(breedId).style.display = "block";
+        }
+
+        function hideInfo(breedId) {
+            document.getElementById(breedId).style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

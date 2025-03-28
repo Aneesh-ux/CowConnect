@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indian Cow Market</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+    .header {
+      width: 100%;
+      padding: 20px;
+      background: #8B4513;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      width: 90%;
+      margin: auto;
+      padding: 20px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 20px 0 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .emoji {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .price {
+      font-size: 18px;
+      color: green;
+      font-weight: bold;
+    }
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+    .cart {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .cart-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .cart-items {
+      margin-top: 10px;
+      list-style: none;
+      padding: 0;
+    }
+    .cart-items li {
+      padding: 5px 0;
+    }
+    .total-price {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Indian Cow Market 🐄</div>
+
+  <div class="container">
+    <!-- Cows Section -->
+    <div class="section-title">Available Cows for Purchase</div>
+    <div class="grid">
+      <div class="card">
+        <div class="emoji">🐂</div>
+        <h3>Sahiwal Cow</h3>
+        <p class="price">₹50,000</p>
+        <button class="btn" onclick="addToCart('Sahiwal Cow', 50000)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <div class="emoji">🐃</div>
+        <h3>Gir Cow</h3>
+        <p class="price">₹60,000</p>
+        <button class="btn" onclick="addToCart('Gir Cow', 60000)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <div class="emoji">🐄</div>
+        <h3>Tharparkar Cow</h3>
+        <p class="price">₹55,000</p>
+        <button class="btn" onclick="addToCart('Tharparkar Cow', 55000)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <div class="emoji">🐮</div>
+        <h3>Kankrej Cow</h3>
+        <p class="price">₹45,000</p>
+        <button class="btn" onclick="addToCart('Kankrej Cow', 45000)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dairy Products Section -->
+    <div class="section-title">Dairy Products</div>
+    <div class="grid">
+      <div class="card">
+        <div class="emoji">🥛</div>
+        <h3>Fresh Milk</h3>
+        <p class="price">₹50 / L</p>
+        <button class="btn" onclick="addToCart('Fresh Milk (1L)', 50)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <div class="emoji">🧈</div>
+        <h3>Butter</h3>
+        <p class="price">₹120 / 500g</p>
+        <button class="btn" onclick="addToCart('Butter (500g)', 120)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <div class="emoji">🧀</div>
+        <h3>Cheese</h3>
+        <p class="price">₹150 / 200g</p>
+        <button class="btn" onclick="addToCart('Cheese (200g)', 150)">Add to Cart</button>
+      </div>
+ 
+    </div>
+
+    <!-- Shopping Cart Section -->
+    <div class="cart">
+      <h2 class="cart-title">Shopping Cart 🛒</h2>
+      <ul class="cart-items" id="cart-items"></ul>
+      <p class="total-price">Total: ₹<span id="total-price">0</span></p>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+    let totalPrice = 0;
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      totalPrice += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartItems = document.getElementById("cart-items");
+      let totalPriceElement = document.getElementById("total-price");
+
+      cartItems.innerHTML = "";
+      cart.forEach((item) => {
+        let li = document.createElement("li");
+        li.textContent = ${item.name} - ₹${item.price};
+        cartItems.appendChild(li);
+      });
+
+      totalPriceElement.textContent = totalPrice;
+    }
+  </script>
+</body>
+</html>

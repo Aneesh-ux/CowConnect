@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CowConnect - Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+    .header {
+      width: 100%;
+      padding: 20px;
+      background: #8B4513;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card .emoji {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    .section {
+      display: none;
+    }
+    .back-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .back-btn:hover {
+      background-color: #45a049;
+    }
+    /* Sample content styling for each section */
+    .section-content {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">CowConnect 🐄</div>
+  <div class="container">
+
+    <!-- Home (Opening Interface) -->
+    <div id="home-section" class="section" style="display: block;">
+      <h2>Welcome to Indian Cow Revival</h2>
+      <p>Select a section below to explore:</p>
+      <div class="grid">
+        <div class="card" onclick="navigateTo('market-section')">
+          <div class="emoji">🛒</div>
+          <h3>Market Page</h3>
+          <p>Buy cows and dairy products</p>
+        </div>
+        <div class="card" onclick="navigateTo('breed-section')">
+          <div class="emoji">📖</div>
+          <h3>Breed Info</h3>
+          <p>Learn about cow breeds</p>
+        </div>
+        <div class="card" onclick="navigateTo('chatbot-section')">
+          <div class="emoji">🤖</div>
+          <h3>ChatBot</h3>
+          <p>Talk to Mithra AI</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Market Section -->
+    <div id="market-section" class="section">
+      <h2>Market Page</h2>
+      <div class="section-content">
+        <p>This is the market page where you can purchase cows and dairy products.</p>
+        <!-- You can integrate your market page content here -->
+      </div>
+      <button class="back-btn" onclick="navigateTo('home-section')">Back to Home</button>
+    </div>
+
+    <!-- Breed Info Section -->
+    <div id="breed-section" class="section">
+      <h2>Breed Information</h2>
+      <div class="section-content">
+        <p>This section provides detailed information on various cow breeds. Learn about their characteristics, benefits, and more.</p>
+        <!-- Insert your breed info content here -->
+      </div>
+      <button class="back-btn" onclick="navigateTo('home-section')">Back to Home</button>
+    </div>
+
+    <!-- ChatBot Section -->
+    <div id="chatbot-section" class="section">
+      <h2>Mithra AI ChatBot</h2>
+      <div class="section-content" style="height: 300px; overflow-y: auto;">
+        <div id="chat-box">
+          <!-- Chat messages will appear here -->
+          <p><em>Welcome to Mithra AI. How can I help you today?</em></p>
+        </div>
+      </div>
+      <div style="display: flex; margin-bottom: 20px;">
+        <input id="chat-input" type="text" placeholder="Type your message..." style="flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px;" />
+        <button onclick="sendMessage()" style="background-color: #4CAF50; color: white; border: none; padding: 10px 15px; margin-left: 10px; font-size: 16px; border-radius: 5px; cursor: pointer;">Send</button>
+      </div>
+      <button class="back-btn" onclick="navigateTo('home-section')">Back to Home</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Function to navigate between sections
+    function navigateTo(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.style.display = 'none';
+      });
+      document.getElementById(sectionId).style.display = 'block';
+    }
+
+    // Simple ChatBot functionality for Mithra AI
+    const chatBox = document.getElementById("chat-box");
+    const chatInput = document.getElementById("chat-input");
+
+    function sendMessage() {
+      const messageText = chatInput.value.trim();
+      if (messageText === "") return;
+      appendMessage(messageText, "user");
+      chatInput.value = "";
+      setTimeout(() => {
+        const aiResponse = getAIResponse(messageText);
+        appendMessage(aiResponse, "bot");
+      }, 1000);
+    }
+
+    function appendMessage(text, sender) {
+      const messageP = document.createElement("p");
+      messageP.textContent = (sender === "user") ? "You: " + text : "Mithra AI: " + text;
+      chatBox.appendChild(messageP);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getAIResponse(userText) {
+      // Dummy response – you can expand this with real AI logic or API integration.
+      return "Hello! How can I assist you regarding Indian Cow Revival today?";
+    }
+  </script>
+</body>
+</html>
